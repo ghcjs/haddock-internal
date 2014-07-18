@@ -1,4 +1,4 @@
-name:                 haddock
+name:                 haddock-internal
 version:              2.14.3
 synopsis:             A documentation-generation tool for Haskell libraries
 description:          Haddock is a documentation-generation tool for Haskell
@@ -61,75 +61,6 @@ flag dev
   default: False
   manual: True
 
-executable haddock
-  default-language:     Haskell2010
-  main-is:              Main.hs
-  hs-source-dirs:       driver
-  if flag(dev)
-    ghc-options:          -funbox-strict-fields -Wall -fwarn-tabs
-  else
-    ghc-options:          -funbox-strict-fields -Wall -fwarn-tabs -O2
-
-  build-depends:
-    base >= 4.3 && < 4.8
-  if flag(in-ghc-tree)
-    hs-source-dirs: src, vendor/attoparsec-0.10.4.0
-    cpp-options: -DIN_GHC_TREE
-    build-depends:
-      filepath,
-      directory,
-      containers,
-      deepseq,
-      array,
-      xhtml >= 3000.2 && < 3000.3,
-      Cabal >= 1.10,
-      ghc == 7.8.*,
-      bytestring
-
-    other-modules:
-      Documentation.Haddock
-      Data.Attoparsec
-      Data.Attoparsec.ByteString
-      Data.Attoparsec.ByteString.Char8
-      Data.Attoparsec.Combinator
-      Data.Attoparsec.Number
-      Data.Attoparsec.ByteString.FastSet
-      Data.Attoparsec.ByteString.Internal
-      Data.Attoparsec.Internal
-      Data.Attoparsec.Internal.Types
-      Haddock
-      Haddock.Interface
-      Haddock.Interface.Rename
-      Haddock.Interface.Create
-      Haddock.Interface.AttachInstances
-      Haddock.Interface.LexParseRn
-      Haddock.Interface.ParseModuleHeader
-      Haddock.Parser
-      Haddock.Parser.Util
-      Haddock.Utf8
-      Haddock.Utils
-      Haddock.Backends.Xhtml
-      Haddock.Backends.Xhtml.Decl
-      Haddock.Backends.Xhtml.DocMarkup
-      Haddock.Backends.Xhtml.Layout
-      Haddock.Backends.Xhtml.Names
-      Haddock.Backends.Xhtml.Themes
-      Haddock.Backends.Xhtml.Types
-      Haddock.Backends.Xhtml.Utils
-      Haddock.Backends.LaTeX
-      Haddock.Backends.HaddockDB
-      Haddock.Backends.Hoogle
-      Haddock.ModuleTree
-      Haddock.Types
-      Haddock.Doc
-      Haddock.Version
-      Haddock.InterfaceFile
-      Haddock.Options
-      Haddock.GhcUtils
-      Haddock.Convert
-  else
-    build-depends:  haddock
-
 library
   default-language:     Haskell2010
 
@@ -156,9 +87,6 @@ library
   else
     ghc-options:          -funbox-strict-fields -Wall -fwarn-tabs -O2
 
-  exposed-modules:
-    Documentation.Haddock
-
   other-modules:
     Data.Attoparsec
     Data.Attoparsec.ByteString
@@ -169,6 +97,9 @@ library
     Data.Attoparsec.ByteString.Internal
     Data.Attoparsec.Internal
     Data.Attoparsec.Internal.Types
+
+  exposed-modules:
+    Documentation.Haddock
     Haddock
     Haddock.Interface
     Haddock.Interface.Rename
