@@ -15,7 +15,7 @@
 --
 -- Program entry point and top-level code.
 -----------------------------------------------------------------------------
-module Haddock (haddock, readPackagesAndProcessModules, withGhc') where
+module Haddock where
 
 
 import Haddock.Backends.Xhtml
@@ -52,7 +52,7 @@ import Data.Int
 import System.FilePath
 #else
 import qualified GHC.Paths as GhcPaths
-import Paths_haddock
+import Paths_haddock_internal
 #endif
 
 import GHC hiding (verbosity)

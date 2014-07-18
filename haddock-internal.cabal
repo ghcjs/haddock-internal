@@ -130,7 +130,7 @@ library
     Haddock.Options
     Haddock.GhcUtils
     Haddock.Convert
-    Paths_haddock
+    Paths_haddock_internal
 
   if flag(in-ghc-tree)
     buildable: False
